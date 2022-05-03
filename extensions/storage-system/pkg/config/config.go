@@ -21,28 +21,28 @@ type Config struct {
 
 	TokenManager      *TokenManager `yaml:"token_manager"`
 	Reva              *Reva         `yaml:"reva"`
-	MachineAuthAPIKey string        `yaml:"machine_auth_api_key" env:"STORAGE_METADATA_MACHINE_AUTH_API_KEY"`
-	MetadataUserID    string        `yaml:"metadata_user_id"`
+	MachineAuthAPIKey string        `yaml:"machine_auth_api_key" env:"STORAGE_SYSTEM_MACHINE_AUTH_API_KEY"`
+	SystemUserID      string        `yaml:"system_user_id"`
 
 	SkipUserGroupsInToken bool    `yaml:"skip_user_groups_in_token"`
-	Driver                string  `yaml:"driver" env:"STORAGE_METADATA_DRIVER" desc:"The driver which should be used by the service"`
+	Driver                string  `yaml:"driver" env:"STORAGE_SYSTEM_DRIVER" desc:"The driver which should be used by the service"`
 	Drivers               Drivers `yaml:"drivers"`
 	DataServerURL         string  `yaml:"data_server_url"`
 	TempFolder            string  `yaml:"temp_folder"`
-	DataProviderInsecure  bool    `yaml:"data_provider_insecure" env:"OCIS_INSECURE;STORAGE_METADATA_DATAPROVIDER_INSECURE"`
+	DataProviderInsecure  bool    `yaml:"data_provider_insecure" env:"OCIS_INSECURE;STORAGE_SYSTEM_DATAPROVIDER_INSECURE"`
 }
 type Tracing struct {
-	Enabled   bool   `yaml:"enabled" env:"OCIS_TRACING_ENABLED;STORAGE_METADATA_TRACING_ENABLED" desc:"Activates tracing."`
-	Type      string `yaml:"type" env:"OCIS_TRACING_TYPE;STORAGE_METADATA_TRACING_TYPE"`
-	Endpoint  string `yaml:"endpoint" env:"OCIS_TRACING_ENDPOINT;STORAGE_METADATA_TRACING_ENDPOINT" desc:"The endpoint to the tracing collector."`
-	Collector string `yaml:"collector" env:"OCIS_TRACING_COLLECTOR;STORAGE_METADATA_TRACING_COLLECTOR"`
+	Enabled   bool   `yaml:"enabled" env:"OCIS_TRACING_ENABLED;STORAGE_SYSTEM_TRACING_ENABLED" desc:"Activates tracing."`
+	Type      string `yaml:"type" env:"OCIS_TRACING_TYPE;STORAGE_SYSTEM_TRACING_TYPE"`
+	Endpoint  string `yaml:"endpoint" env:"OCIS_TRACING_ENDPOINT;STORAGE_SYSTEM_TRACING_ENDPOINT" desc:"The endpoint to the tracing collector."`
+	Collector string `yaml:"collector" env:"OCIS_TRACING_COLLECTOR;STORAGE_SYSTEM_TRACING_COLLECTOR"`
 }
 
 type Logging struct {
-	Level  string `yaml:"level" env:"OCIS_LOG_LEVEL;STORAGE_METADATA_LOG_LEVEL" desc:"The log level."`
-	Pretty bool   `yaml:"pretty" env:"OCIS_LOG_PRETTY;STORAGE_METADATA_LOG_PRETTY" desc:"Activates pretty log output."`
-	Color  bool   `yaml:"color" env:"OCIS_LOG_COLOR;STORAGE_METADATA_LOG_COLOR" desc:"Activates colorized log output."`
-	File   string `yaml:"file" env:"OCIS_LOG_FILE;STORAGE_METADATA_LOG_FILE" desc:"The target log file."`
+	Level  string `yaml:"level" env:"OCIS_LOG_LEVEL;STORAGE_SYSTEM_LOG_LEVEL" desc:"The log level."`
+	Pretty bool   `yaml:"pretty" env:"OCIS_LOG_PRETTY;STORAGE_SYSTEM_LOG_PRETTY" desc:"Activates pretty log output."`
+	Color  bool   `yaml:"color" env:"OCIS_LOG_COLOR;STORAGE_SYSTEM_LOG_COLOR" desc:"Activates colorized log output."`
+	File   string `yaml:"file" env:"OCIS_LOG_FILE;STORAGE_SYSTEM_LOG_FILE" desc:"The target log file."`
 }
 
 type Service struct {
@@ -50,20 +50,20 @@ type Service struct {
 }
 
 type Debug struct {
-	Addr   string `yaml:"addr" env:"STORAGE_METADATA_DEBUG_ADDR"`
-	Token  string `yaml:"token" env:"STORAGE_METADATA_DEBUG_TOKEN"`
-	Pprof  bool   `yaml:"pprof" env:"STORAGE_METADATA_DEBUG_PPROF"`
-	Zpages bool   `yaml:"zpages" env:"STORAGE_METADATA_DEBUG_ZPAGES"`
+	Addr   string `yaml:"addr" env:"STORAGE_SYSTEM_DEBUG_ADDR"`
+	Token  string `yaml:"token" env:"STORAGE_SYSTEM_DEBUG_TOKEN"`
+	Pprof  bool   `yaml:"pprof" env:"STORAGE_SYSTEM_DEBUG_PPROF"`
+	Zpages bool   `yaml:"zpages" env:"STORAGE_SYSTEM_DEBUG_ZPAGES"`
 }
 
 type GRPCConfig struct {
-	Addr     string `yaml:"addr" env:"STORAGE_METADATA_GRPC_ADDR" desc:"The address of the grpc service."`
-	Protocol string `yaml:"protocol" env:"STORAGE_METADATA_GRPC_PROTOCOL" desc:"The transport protocol of the grpc service."`
+	Addr     string `yaml:"addr" env:"STORAGE_SYSTEM_GRPC_ADDR" desc:"The address of the grpc service."`
+	Protocol string `yaml:"protocol" env:"STORAGE_SYSTEM_GRPC_PROTOCOL" desc:"The transport protocol of the grpc service."`
 }
 
 type HTTPConfig struct {
-	Addr     string `yaml:"addr" env:"STORAGE_METADATA_HTTP_ADDR" desc:"The address of the http service."`
-	Protocol string `yaml:"protocol" env:"STORAGE_METADATA_HTTP_PROTOCOL" desc:"The transport protocol of the http service."`
+	Addr     string `yaml:"addr" env:"STORAGE_SYSTEM_HTTP_ADDR" desc:"The address of the http service."`
+	Protocol string `yaml:"protocol" env:"STORAGE_SYSTEM_HTTP_PROTOCOL" desc:"The transport protocol of the http service."`
 }
 
 type Drivers struct {
@@ -125,7 +125,7 @@ type LocalDriver struct {
 
 type OCISDriver struct {
 	// Root is the absolute path to the location of the data
-	Root                string `yaml:"root" env:"STORAGE_METADATA_DRIVER_OCIS_ROOT"`
+	Root                string `yaml:"root" env:"STORAGE_SYSTEM_DRIVER_OCIS_ROOT"`
 	UserLayout          string
 	PermissionsEndpoint string
 }

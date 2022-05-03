@@ -133,7 +133,7 @@ services:
       IDP_LDAP_BIND_PASSWORD: ${IDP_LDAP_BIND_PASSWORD:-idp}
       STORAGE_LDAP_BIND_PASSWORD: ${STORAGE_LDAP_BIND_PASSWORD:-reva}
 
-      ACCOUNTS_JWT_SECRET: ${OCIS_METADATA_JWT_SECRET:-Pive-Fumkiu4}
+      ACCOUNTS_JWT_SECRET: ${OCIS_SYSTEM_JWT_SECRET:-Pive-Fumkiu4}
       # demo users
       ACCOUNTS_DEMO_USERS_AND_GROUPS: "${DEMO_USERS:-false}"  # deprecated, remove after switching to LibreIDM
     volumes:
@@ -383,14 +383,14 @@ services:
 
       STORAGE_HOME_DATAPROVIDER_INSECURE: "${INSECURE:-false}"
 
-      STORAGE_METADATA_GRPC_ADDR: 0.0.0.0:9215
-      STORAGE_METADATA_HTTP_ADDR: 0.0.0.0:9216
-      STORAGE_METADATA_DATA_SERVER_URL: http://storage-metadata:9216/data
+      STORAGE_SYSTEM_GRPC_ADDR: 0.0.0.0:9215
+      STORAGE_SYSTEM_HTTP_ADDR: 0.0.0.0:9216
+      STORAGE_SYSTEM_DATA_SERVER_URL: http://storage-metadata:9216/data
 
-      STORAGE_JWT_SECRET: ${OCIS_METADATA_JWT_SECRET:-Pive-Fumkiu4}
+      STORAGE_JWT_SECRET: ${OCIS_SYSTEM_JWT_SECRET:-Pive-Fumkiu4}
       STORAGE_TRANSFER_SECRET: ${STORAGE_TRANSFER_SECRET:-replace-me-with-a-transfer-secret}
 
-      STORAGE_METADATA_DRIVER: ocis
+      STORAGE_SYSTEM_DRIVER: ocis
 
       REVA_GATEWAY: storage-gateway:9142
     volumes:

@@ -85,7 +85,7 @@ services:
       STORAGE_LDAP_LOGIN_ATTRIBUTES: "uid,mail"
       # ownCloudSQL storage driver
       STORAGE_USERS_DRIVER: owncloudsql
-      STORAGE_METADATA_DRIVER: ocis # keep metadata on ocis storage since this are only small files atm
+      STORAGE_SYSTEM_DRIVER: ocis # keep metadata on ocis storage since this are only small files atm
       STORAGE_USERS_DRIVER_OWNCLOUDSQL_DATADIR: /mnt/data/files
       STORAGE_USERS_DRIVER_OWNCLOUDSQL_UPLOADINFO_DIR: /tmp
       STORAGE_USERS_DRIVER_OWNCLOUDSQL_SHARE_FOLDER: "/Shares"

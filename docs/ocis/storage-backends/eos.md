@@ -89,7 +89,7 @@ Kill the metadata storage. By default it uses the `ocis` storage driver. We need
 
 ```
 docker-compose exec ocis ./bin/ocis kill storage-metadata
-docker-compose exec -e STORAGE_METADATA_DRIVER=eos -e STORAGE_METADATA_ROOT=/eos/dockertest/ocis/metadata ocis ./bin/ocis run storage-metadata
+docker-compose exec -e STORAGE_SYSTEM_DRIVER=eos -e STORAGE_SYSTEM_ROOT=/eos/dockertest/ocis/metadata ocis ./bin/ocis run storage-metadata
 ```
 
 

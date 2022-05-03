@@ -25,9 +25,9 @@ import (
 	search "github.com/owncloud/ocis/extensions/search/pkg/config"
 	settings "github.com/owncloud/ocis/extensions/settings/pkg/config"
 	sharing "github.com/owncloud/ocis/extensions/sharing/pkg/config"
-	storagemetadata "github.com/owncloud/ocis/extensions/storage-metadata/pkg/config"
 	storagepublic "github.com/owncloud/ocis/extensions/storage-publiclink/pkg/config"
 	storageshares "github.com/owncloud/ocis/extensions/storage-shares/pkg/config"
+	storagesystem "github.com/owncloud/ocis/extensions/storage-system/pkg/config"
 	storageusers "github.com/owncloud/ocis/extensions/storage-users/pkg/config"
 	store "github.com/owncloud/ocis/extensions/store/pkg/config"
 	thumbnails "github.com/owncloud/ocis/extensions/thumbnails/pkg/config"
@@ -68,38 +68,38 @@ type Config struct {
 	TokenManager      *shared.TokenManager `yaml:"token_manager"`
 	MachineAuthAPIKey string               `yaml:"machine_auth_api_key" env:"OCIS_MACHINE_AUTH_API_KEY"`
 	TransferSecret    string               `yaml:"transfer_secret" env:"STORAGE_TRANSFER_SECRET"`
-	MetadataUserID    string               `yaml:"metadata_user_id" env:"METADATA_USER_ID"`
+	SystemUserID      string               `yaml:"system_user_id" env:"SYSTEM_USER_ID"`
 	Runtime           Runtime              `yaml:"runtime"`
 
-	Audit             *audit.Config           `yaml:"audit"`
-	Accounts          *accounts.Config        `yaml:"accounts"`
-	GLAuth            *glauth.Config          `yaml:"glauth"`
-	Graph             *graph.Config           `yaml:"graph"`
-	GraphExplorer     *graphExplorer.Config   `yaml:"graph-explorer"`
-	IDP               *idp.Config             `yaml:"idp"`
-	IDM               *idm.Config             `yaml:"idm"`
-	Nats              *nats.Config            `yaml:"nats"`
-	Notifications     *notifications.Config   `yaml:"notifications"`
-	OCS               *ocs.Config             `yaml:"ocs"`
-	Web               *web.Config             `yaml:"web"`
-	Proxy             *proxy.Config           `yaml:"proxy"`
-	Settings          *settings.Config        `yaml:"settings"`
-	Gateway           *gateway.Config         `yaml:"gateway"`
-	Frontend          *frontend.Config        `yaml:"frontend"`
-	AuthBasic         *authbasic.Config       `yaml:"auth-basic"`
-	AuthBearer        *authbearer.Config      `yaml:"auth-bearer"`
-	AuthMachine       *authmachine.Config     `yaml:"auth-machine"`
-	User              *user.Config            `yaml:"user"`
-	Group             *group.Config           `yaml:"group"`
-	AppProvider       *appprovider.Config     `yaml:"appprovider"`
-	Sharing           *sharing.Config         `yaml:"sharing"`
-	StorageMetadata   *storagemetadata.Config `yaml:"storage-metadata"`
-	StoragePublicLink *storagepublic.Config   `yaml:"storage-public"`
-	StorageUsers      *storageusers.Config    `yaml:"storage-users"`
-	StorageShares     *storageshares.Config   `yaml:"storage-shares"`
-	OCDav             *ocdav.Config           `yaml:"ocdav"`
-	Store             *store.Config           `yaml:"store"`
-	Thumbnails        *thumbnails.Config      `yaml:"thumbnails"`
-	WebDAV            *webdav.Config          `yaml:"webdav"`
-	Search            *search.Config          `yaml:"search"`
+	Audit             *audit.Config         `yaml:"audit"`
+	Accounts          *accounts.Config      `yaml:"accounts"`
+	GLAuth            *glauth.Config        `yaml:"glauth"`
+	Graph             *graph.Config         `yaml:"graph"`
+	GraphExplorer     *graphExplorer.Config `yaml:"graph-explorer"`
+	IDP               *idp.Config           `yaml:"idp"`
+	IDM               *idm.Config           `yaml:"idm"`
+	Nats              *nats.Config          `yaml:"nats"`
+	Notifications     *notifications.Config `yaml:"notifications"`
+	OCS               *ocs.Config           `yaml:"ocs"`
+	Web               *web.Config           `yaml:"web"`
+	Proxy             *proxy.Config         `yaml:"proxy"`
+	Settings          *settings.Config      `yaml:"settings"`
+	Gateway           *gateway.Config       `yaml:"gateway"`
+	Frontend          *frontend.Config      `yaml:"frontend"`
+	AuthBasic         *authbasic.Config     `yaml:"auth-basic"`
+	AuthBearer        *authbearer.Config    `yaml:"auth-bearer"`
+	AuthMachine       *authmachine.Config   `yaml:"auth-machine"`
+	User              *user.Config          `yaml:"user"`
+	Group             *group.Config         `yaml:"group"`
+	AppProvider       *appprovider.Config   `yaml:"appprovider"`
+	Sharing           *sharing.Config       `yaml:"sharing"`
+	StorageSystem     *storagesystem.Config `yaml:"storage-system"`
+	StoragePublicLink *storagepublic.Config `yaml:"storage-public"`
+	StorageUsers      *storageusers.Config  `yaml:"storage-users"`
+	StorageShares     *storageshares.Config `yaml:"storage-shares"`
+	OCDav             *ocdav.Config         `yaml:"ocdav"`
+	Store             *store.Config         `yaml:"store"`
+	Thumbnails        *thumbnails.Config    `yaml:"thumbnails"`
+	WebDAV            *webdav.Config        `yaml:"webdav"`
+	Search            *search.Config        `yaml:"search"`
 }

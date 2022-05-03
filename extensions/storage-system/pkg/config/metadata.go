@@ -1,6 +1,6 @@
 package config
 
-func MetadataDrivers(cfg *Config) map[string]interface{} {
+func StorageSystemDrivers(cfg *Config) map[string]interface{} {
 	return map[string]interface{}{
 		"eos": map[string]interface{}{
 			"namespace":              cfg.Drivers.EOS.Root,

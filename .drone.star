@@ -1705,7 +1705,7 @@ def ocisServer(storage, accounts_hash_difficulty = 4, volumes = [], depends_on =
             "STORAGE_USERS_DRIVER": "%s" % (storage),
             "STORAGE_USERS_DRIVER_LOCAL_ROOT": "/srv/app/tmp/ocis/local/root",
             "STORAGE_USERS_DRIVER_OCIS_ROOT": "/srv/app/tmp/ocis/storage/users",
-            "STORAGE_METADATA_DRIVER_OCIS_ROOT": "/srv/app/tmp/ocis/storage/metadata",
+            "STORAGE_SYSTEM_DRIVER_OCIS_ROOT": "/srv/app/tmp/ocis/storage/metadata",
             "SHARING_USER_JSON_FILE": "/srv/app/tmp/ocis/shares.json",
             "PROXY_ENABLE_BASIC_AUTH": True,
             "WEB_UI_CONFIG": "/drone/src/tests/config/drone/ocis-config.json",
@@ -1763,7 +1763,7 @@ def ocisServer(storage, accounts_hash_difficulty = 4, volumes = [], depends_on =
             "LDAP_LOGIN_ATTRIBUTES": "uid,mail",
             # ownCloudSQL storage driver
             "STORAGE_USERS_DRIVER": "owncloudsql",
-            "STORAGE_METADATA_DRIVER": "ocis",
+            "STORAGE_SYSTEM_DRIVER": "ocis",
             "STORAGE_USERS_DRIVER_OWNCLOUDSQL_DATADIR": "/mnt/data/files",
             "STORAGE_USERS_DRIVER_OWNCLOUDSQL_UPLOADINFO_DIR": "/tmp",
             "STORAGE_USERS_DRIVER_OWNCLOUDSQL_SHARE_FOLDER": "/Shares",

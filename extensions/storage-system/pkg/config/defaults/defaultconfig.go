@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/owncloud/ocis/extensions/storage-metadata/pkg/config"
+	"github.com/owncloud/ocis/extensions/storage-system/pkg/config"
 	"github.com/owncloud/ocis/ocis-pkg/config/defaults"
 )
 
@@ -32,12 +32,12 @@ func DefaultConfig() *config.Config {
 			Protocol: "tcp",
 		},
 		Service: config.Service{
-			Name: "storage-metadata",
+			Name: "storage-system",
 		},
 		Reva: &config.Reva{
 			Address: "127.0.0.1:9142",
 		},
-		TempFolder:    filepath.Join(defaults.BaseDataPath(), "tmp", "metadata"),
+		TempFolder:    filepath.Join(defaults.BaseDataPath(), "tmp", "system"),
 		DataServerURL: "http://localhost:9216/data",
 		Driver:        "ocis",
 		Drivers: config.Drivers{
@@ -62,19 +62,19 @@ func DefaultConfig() *config.Config {
 				GatewaySVC:          "127.0.0.1:9215",
 			},
 			Local: config.LocalDriver{
-				Root: filepath.Join(defaults.BaseDataPath(), "storage", "local", "metadata"),
+				Root: filepath.Join(defaults.BaseDataPath(), "storage", "local", "system"),
 			},
 			S3: config.S3Driver{
 				Region: "default",
 			},
 			S3NG: config.S3NGDriver{
-				Root:                filepath.Join(defaults.BaseDataPath(), "storage", "metadata"),
+				Root:                filepath.Join(defaults.BaseDataPath(), "storage", "system"),
 				UserLayout:          "{{.Id.OpaqueId}}",
 				Region:              "default",
 				PermissionsEndpoint: "127.0.0.1:9215",
 			},
 			OCIS: config.OCISDriver{
-				Root:                filepath.Join(defaults.BaseDataPath(), "storage", "metadata"),
+				Root:                filepath.Join(defaults.BaseDataPath(), "storage", "system"),
 				UserLayout:          "{{.Id.OpaqueId}}",
 				PermissionsEndpoint: "127.0.0.1:9215",
 			},
@@ -126,8 +126,8 @@ func EnsureDefaults(cfg *config.Config) {
 		cfg.MachineAuthAPIKey = cfg.Commons.MachineAuthAPIKey
 	}
 
-	if cfg.MetadataUserID == "" && cfg.Commons != nil && cfg.Commons.MetadataUserID != "" {
-		cfg.MetadataUserID = cfg.Commons.MetadataUserID
+	if cfg.SystemUserID == "" && cfg.Commons != nil && cfg.Commons.SystemUserID != "" {
+		cfg.SystemUserID = cfg.Commons.SystemUserID
 	}
 
 }

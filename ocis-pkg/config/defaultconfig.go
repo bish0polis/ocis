@@ -23,9 +23,9 @@ import (
 	search "github.com/owncloud/ocis/extensions/search/pkg/config/defaults"
 	settings "github.com/owncloud/ocis/extensions/settings/pkg/config/defaults"
 	sharing "github.com/owncloud/ocis/extensions/sharing/pkg/config/defaults"
-	storagemetadata "github.com/owncloud/ocis/extensions/storage-metadata/pkg/config/defaults"
 	storagepublic "github.com/owncloud/ocis/extensions/storage-publiclink/pkg/config/defaults"
 	storageshares "github.com/owncloud/ocis/extensions/storage-shares/pkg/config/defaults"
+	storagesystem "github.com/owncloud/ocis/extensions/storage-system/pkg/config/defaults"
 	storageusers "github.com/owncloud/ocis/extensions/storage-users/pkg/config/defaults"
 	store "github.com/owncloud/ocis/extensions/store/pkg/config/defaults"
 	thumbnails "github.com/owncloud/ocis/extensions/thumbnails/pkg/config/defaults"
@@ -62,7 +62,7 @@ func DefaultConfig() *Config {
 		Search:            search.FullDefaultConfig(),
 		Settings:          settings.DefaultConfig(),
 		Sharing:           sharing.DefaultConfig(),
-		StorageMetadata:   storagemetadata.DefaultConfig(),
+		StorageSystem:     storagesystem.DefaultConfig(),
 		StoragePublicLink: storagepublic.DefaultConfig(),
 		StorageShares:     storageshares.DefaultConfig(),
 		StorageUsers:      storageusers.DefaultConfig(),

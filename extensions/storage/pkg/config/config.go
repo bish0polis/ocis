@@ -572,7 +572,7 @@ func structMappings(cfg *Config) []shared.EnvBinding {
 			Destination: &cfg.Log.Color,
 		},
 		{
-			EnvVars:     []string{"OCIS_INSECURE", "STORAGE_METADATA_DATAPROVIDER_INSECURE"},
+			EnvVars:     []string{"OCIS_INSECURE", "STORAGE_SYSTEM_DATAPROVIDER_INSECURE"},
 			Destination: &cfg.Reva.StorageMetadata.DataProvider.Insecure,
 		},
 		{
@@ -604,7 +604,7 @@ func structMappings(cfg *Config) []shared.EnvBinding {
 			Destination: &cfg.Reva.UserStorage.OCIS.Root,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_OCIS_ROOT"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_OCIS_ROOT"},
 			Destination: &cfg.Reva.MetadataStorage.OCIS.Root,
 		},
 		{
@@ -1262,35 +1262,35 @@ func structMappings(cfg *Config) []shared.EnvBinding {
 
 		// storage metadata
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DEBUG_ADDR"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DEBUG_ADDR"},
 			Destination: &cfg.Reva.StorageMetadata.DebugAddr,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_GRPC_NETWORK"},
+			EnvVars:     []string{"STORAGE_SYSTEMRPC_NETWORK"},
 			Destination: &cfg.Reva.StorageMetadata.GRPCNetwork,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_GRPC_ADDR"},
+			EnvVars:     []string{"STORAGE_SYSTEMC_ADDR"},
 			Destination: &cfg.Reva.StorageMetadata.GRPCAddr,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DATA_SERVER_URL"},
+			EnvVars:     []string{"STORAGE_SYSTEMSERVER_URL"},
 			Destination: &cfg.Reva.StorageMetadata.DataServerURL,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_HTTP_NETWORK"},
+			EnvVars:     []string{"STORAGE_SYSTEMK"},
 			Destination: &cfg.Reva.StorageMetadata.HTTPNetwork,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_HTTP_ADDR"},
+			EnvVars:     []string{"STORAGE_SYSTEMP_ADDR"},
 			Destination: &cfg.Reva.StorageMetadata.HTTPAddr,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_TMP_FOLDER"},
+			EnvVars:     []string{"STORAGE_SYSTEM_TMP_FOLDER"},
 			Destination: &cfg.Reva.StorageMetadata.TempFolder,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER"},
 			Destination: &cfg.Reva.StorageMetadata.Driver,
 		},
 
@@ -1665,71 +1665,71 @@ func structMappings(cfg *Config) []shared.EnvBinding {
 
 		// metadata driver eos
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_NAMESPACE"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_NAMESPACE"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.Root,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_SHADOW_NAMESPACE"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_SHADOW_NAMESPACE"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.ShadowNamespace,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_UPLOADS_NAMESPACE"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_UPLOADS_NAMESPACE"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.UploadsNamespace,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_SHARE_FOLDER"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_SHARE_FOLDER"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.ShareFolder,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_BINARY"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_BINARY"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.EosBinary,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_XRDCOPY_BINARY"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_XRDCOPY_BINARY"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.XrdcopyBinary,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_MASTER_URL"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_MASTER_URL"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.MasterURL,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_SLAVE_URL"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_SLAVE_URL"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.SlaveURL,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_CACHE_DIRECTORY"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_CACHE_DIRECTORY"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.CacheDirectory,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_ENABLE_LOGGING"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_ENABLE_LOGGING"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.EnableLogging,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_SHOW_HIDDEN_SYSFILES"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_SHOW_HIDDEN_SYSFILES"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.ShowHiddenSysFiles,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_FORCE_SINGLEUSER_MODE"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_FORCE_SINGLEUSER_MODE"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.ForceSingleUserMode,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_USE_KEYTAB"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_USE_KEYTAB"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.UseKeytab,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_SEC_PROTOCOL"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_SEC_PROTOCOL"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.SecProtocol,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_KEYTAB"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_KEYTAB"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.Keytab,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_SINGLE_USERNAME"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_SINGLE_USERNAME"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.SingleUsername,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_EOS_LAYOUT"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_EOS_LAYOUT"},
 			Destination: &cfg.Reva.MetadataStorage.EOS.UserLayout,
 		},
 		{
@@ -1739,65 +1739,65 @@ func structMappings(cfg *Config) []shared.EnvBinding {
 
 		// metadata local driver
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_LOCAL_ROOT"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_LOCAL_ROOT"},
 			Destination: &cfg.Reva.MetadataStorage.Local.Root,
 		},
 
 		// metadata ocis driver
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_OCIS_LAYOUT"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_OCIS_LAYOUT"},
 			Destination: &cfg.Reva.MetadataStorage.OCIS.UserLayout,
 		},
 
 		// metadata driver s3
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3_REGION"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3_REGION"},
 			Destination: &cfg.Reva.MetadataStorage.S3.Region,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3_ACCESS_KEY"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3_ACCESS_KEY"},
 			Destination: &cfg.Reva.MetadataStorage.S3.AccessKey,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3_SECRET_KEY"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3_SECRET_KEY"},
 			Destination: &cfg.Reva.MetadataStorage.S3.SecretKey,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3_ENDPOINT"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3_ENDPOINT"},
 			Destination: &cfg.Reva.MetadataStorage.S3.Endpoint,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3_BUCKET"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3_BUCKET"},
 			Destination: &cfg.Reva.MetadataStorage.S3.Bucket,
 		},
 
 		// driver s3ng
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3NG_ROOT"},
+			EnvVars:     []string{"STORAGE_SYSTEMRIVER_S3NG_ROOT"},
 			Destination: &cfg.Reva.MetadataStorage.S3NG.Root,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3NG_LAYOUT"},
+			EnvVars:     []string{"STORAGE_SYSTEMRIVER_S3NG_LAYOUT"},
 			Destination: &cfg.Reva.MetadataStorage.S3NG.UserLayout,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3NG_REGION"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3NG_REGION"},
 			Destination: &cfg.Reva.MetadataStorage.S3NG.Region,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3NG_ACCESS_KEY"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3NG_ACCESS_KEY"},
 			Destination: &cfg.Reva.MetadataStorage.S3NG.AccessKey,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3NG_SECRET_KEY"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3NG_SECRET_KEY"},
 			Destination: &cfg.Reva.MetadataStorage.S3NG.SecretKey,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3NG_ENDPOINT"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3NG_ENDPOINT"},
 			Destination: &cfg.Reva.MetadataStorage.S3NG.Endpoint,
 		},
 		{
-			EnvVars:     []string{"STORAGE_METADATA_DRIVER_S3NG_BUCKET"},
+			EnvVars:     []string{"STORAGE_SYSTEM_DRIVER_S3NG_BUCKET"},
 			Destination: &cfg.Reva.MetadataStorage.S3NG.Bucket,
 		},
 
