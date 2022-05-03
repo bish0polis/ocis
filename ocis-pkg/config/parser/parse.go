@@ -98,6 +98,11 @@ func EnsureCommons(cfg *config.Config) {
 	if cfg.MetadataUserID != "" {
 		cfg.Commons.MetadataUserID = cfg.MetadataUserID
 	}
+
+	// copy admin user id to the commons part if set
+	if cfg.AdminUserID != "" {
+		cfg.Commons.AdminUserID = cfg.AdminUserID
+	}
 }
 
 func Validate(cfg *config.Config) error {
