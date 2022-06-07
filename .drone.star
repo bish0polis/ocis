@@ -116,22 +116,7 @@ config = {
                 "When": "oc10",
                 "Then": "ocis",
             },
-<<<<<<< HEAD
-        },
-        # "apiTests-matrix2": {
-        #     "numberOfParts": 10,
-        #     "skip": False,
-        #     "skipExceptParts": [],
-        #     "earlyFail": True,
-        #     "oc_selector": {
-        #         "Given": "ocis",
-        #         "When": "oc10",
-        #         "Then": "oc10",
-        #     },
-        # },
-=======
         ],
->>>>>>> 72d64410a... run all tests on nightly and only smoke tests on PRs
     },
     "rocketchat": {
         "channel": "ocis-internal",
@@ -2271,7 +2256,7 @@ def parallelDeployAcceptancePipeline(ctx):
                                  ["fix-shared-data-permissions"],
                                  True,
                              ) +
-                             parallelAcceptanceTests(environment) +
+                             parallelAcceptanceTests(environment, matrix) +
                              failEarly(ctx, early_fail),
                     "services": oc10DbService() +
                                 ldapService() +
@@ -2301,7 +2286,7 @@ def parallelDeployAcceptancePipeline(ctx):
 
     return pipelines
 
-def parallelAcceptanceTests(env):
+def parallelAcceptanceTests(env, matrix):
     environment = {
         "TEST_SERVER_URL": OCIS_URL,
         "TEST_OC10_URL": OC10_URL,
@@ -2315,7 +2300,7 @@ def parallelAcceptanceTests(env):
         "SKELETON_DIR": "/var/www/owncloud/apps/testing/data/apiSkeleton",
         "PATH_TO_CORE": "/srv/app/testrunner",
         "OCIS_REVA_DATA_ROOT": "/mnt/data/",
-        "EXPECTED_FAILURES_FILE": "/drone/src/tests/acceptance/expected-failures-API-on-OCIS-storage.md",
+        "EXPECTED_FAILURES_FILE": "/drone/src/tests/parallelDeployAcceptance/expected-failures-API-%s-%s-%s.md" % (matrix["Given"], matrix["When"], matrix["Then"]),
         "OCIS_SKELETON_STRATEGY": "copy",
         "SEND_SCENARIO_LINE_REFERENCES": "true",
         "UPLOAD_DELETE_WAIT_TIME": "1",
