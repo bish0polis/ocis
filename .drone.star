@@ -1686,6 +1686,7 @@ def ocisServer(storage, accounts_hash_difficulty = 4, volumes = [], depends_on =
             "OCIS_BASE_DATA_PATH": "/mnt/data/ocis",
             "OCIS_CONFIG_DIR": "/etc/ocis",
             "PROXY_ENABLE_BASIC_AUTH": "true",
+            "IDM_ADMIN_PASSWORD": "admin",
         }
         wait_for_ocis = {
             "name": "wait-for-ocis-server",
