@@ -128,7 +128,7 @@ config = {
     "dockerReleases": {
         "architectures": ["arm", "arm64", "amd64"],
     },
-    "litmus": True,
+    "litmus": False,
 }
 
 # volume for steps to cache Go dependencies between steps of a pipeline
@@ -1639,10 +1639,6 @@ def ocisServer(storage, accounts_hash_difficulty = 4, volumes = [], depends_on =
     else:
         user = "33:33"
         environment = {
-            # Keycloak IDP specific configuration
-            "OCIS_OIDC_ISSUER": "https://keycloak/auth/realms/owncloud",
-            "WEB_OIDC_CLIENT_ID": "ocis-web",
-            "WEB_OIDC_SCOPE": "openid profile email owncloud",
             # external  ldap is supposed to be read only
             "GRAPH_IDENTITY_BACKEND": "ldap",
             "GRAPH_LDAP_SERVER_WRITE_ENABLED": "false",
@@ -1652,7 +1648,6 @@ def ocisServer(storage, accounts_hash_difficulty = 4, volumes = [], depends_on =
             "LDAP_BIND_DN": "cn=admin,dc=owncloud,dc=com",
             "LDAP_BIND_PASSWORD": "admin",
             # LDAP user settings
-            "PROXY_USER_OIDC_CLAIM": "ocis.user.uuid",  # claim was added in Keycloak
             "PROXY_USER_CS3_CLAIM": "userid",  # equals STORAGE_LDAP_USER_SCHEMA_UID
             "LDAP_GROUP_BASE_DN": "ou=TestGroups,dc=owncloud,dc=com",
             "LDAP_GROUP_SCHEMA_ID": "ownclouduuid",
@@ -1680,13 +1675,12 @@ def ocisServer(storage, accounts_hash_difficulty = 4, volumes = [], depends_on =
             # General oCIS config
             # OCIS_RUN_SERVICES specifies to start all fullstack services except idm and idp. These are replaced by external services
             "OCIS_RUN_SERVICES": "app-registry,app-provider,auth-basic,auth-bearer,auth-machine,frontend,gateway,graph,graph-explorer,groups,nats,notifications,ocdav,ocs,proxy,search,settings,sharing,storage-system,storage-publiclink,storage-shares,storage-users,store,thumbnails,users,web,webdav",
-            "OCIS_LOG_LEVEL": "info",
+            "OCIS_LOG_LEVEL": "error",
             "OCIS_URL": OCIS_URL,
             "FRONTEND_ENABLE_RESHARING": "true",
             "OCIS_BASE_DATA_PATH": "/mnt/data/ocis",
             "OCIS_CONFIG_DIR": "/etc/ocis",
             "PROXY_ENABLE_BASIC_AUTH": "true",
-            "IDM_ADMIN_PASSWORD": "admin",
         }
         wait_for_ocis = {
             "name": "wait-for-ocis-server",
@@ -2305,7 +2299,7 @@ def parallelAcceptanceTests(env, matrix):
         "OCIS_SKELETON_STRATEGY": "copy",
         "SEND_SCENARIO_LINE_REFERENCES": "true",
         "UPLOAD_DELETE_WAIT_TIME": "1",
-        "FRONTEND_ENABLE_RESHARING": "true",
+        "REVA_LDAP_SKIP_LDIF_IMPORT": "true",
     }
     environment.update(env)
 
@@ -2334,9 +2328,6 @@ def parallelDeploymentOC10Server():
                 # can be switched to "web"
                 "OWNCLOUD_DEFAULT_APP": "files",
                 "OWNCLOUD_WEB_REWRITE_LINKS": "false",
-                # script / config variables
-                "IDP_OIDC_ISSUER": "https://keycloak/auth/realms/owncloud",
-                "IDP_OIDC_CLIENT_SECRET": "oc10-oidc-secret",
                 "CLOUD_DOMAIN": OCIS_DOMAIN,
                 # LDAP bind configuration
                 "LDAP_HOST": "openldap",
@@ -2444,7 +2435,6 @@ def copyConfigs():
             # oc10 configs
             "mkdir -p /etc/templates",
             "mkdir -p /etc/pre_server.d",
-            "cp %s/oc10/oidc.config.php /etc/templates/oidc.config.php" % (PARALLEL_DEPLOY_CONFIG_PATH),
             "cp %s/oc10/ldap-config.tmpl.json /etc/templates/ldap-config.tmpl.json" % (PARALLEL_DEPLOY_CONFIG_PATH),
             "cp %s/oc10/10-custom-config.sh /etc/pre_server.d/10-custom-config.sh" % (PARALLEL_DEPLOY_CONFIG_PATH),
         ],
