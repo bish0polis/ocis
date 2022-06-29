@@ -77,11 +77,11 @@ config = {
         "ocis",
     ],
     "cs3ApiTests": {
-        "skip": False,
+        "skip": True,
         "earlyFail": True,
     },
     "localApiTests": {
-        "skip": False,
+        "skip": True,
         "earlyFail": True,
     },
     "apiTests": {
@@ -92,7 +92,7 @@ config = {
     },
     "uiTests": {
         "filterTags": "@ocisSmokeTest",
-        "skip": False,
+        "skip": True,
         "skipExceptParts": [],
         "earlyFail": True,
     },
@@ -109,7 +109,7 @@ config = {
             "suites": [
                 "apiShareManagement",
             ],
-            "skip": False,
+            "skip": True,
             "earlyFail": True,
             "cron": "nightly",
         },
@@ -117,7 +117,7 @@ config = {
             "suites": [
                 "apiWebdavOperations",
             ],
-            "skip": False,
+            "skip": True,
             "earlyFail": True,
             "cron": "nightly",
         },
@@ -802,7 +802,9 @@ def e2eTests(ctx):
     e2eTestsSteps = \
         restoreBuildArtifactCache(ctx, "ocis-binary-amd64", "ocis/bin/ocis") + \
         ocisServer("ocis", 4, []) + \
-        e2e_test_ocis
+        e2e_test_ocis + \
+        uploadTracingResult(ctx) + \
+        publishTracingResult(ctx, "e2e test")
 
     if ("full-ci" in ctx.build.title.lower() or ctx.build.event == "tag"):
         return [{
@@ -815,6 +817,56 @@ def e2eTests(ctx):
             "volumes": e2e_volumes,
         }]
     return []
+
+def uploadTracingResult(ctx):
+    return [{
+        "name": "upload-tracing-result",
+        "image": PLUGINS_S3,
+        "pull": "if-not-exists",
+        "settings": {
+            "bucket": {
+                "from_secret": "cache_public_s3_bucket",
+            },
+            "endpoint": {
+                "from_secret": "cache_public_s3_server",
+            },
+            "path_style": True,
+            "source": "/srv/app/web/reports/e2e/playwright/tracing/**/*",
+            "strip_prefix": "/srv/app/web/reports/e2e/playwright/tracing",
+            "target": "/${DRONE_BUILD_NUMBER}/tracing",
+        },
+        "environment": {
+            "AWS_ACCESS_KEY_ID": {
+                "from_secret": "cache_public_s3_access_key",
+            },
+            "AWS_SECRET_ACCESS_KEY": {
+                "from_secret": "cache_public_s3_secret_key",
+            },
+        },
+    }]
+
+def publishTracingResult(ctx, suite):
+    return [{
+        "name": "publish-tracing-result",
+        "image": OC_UBUNTU,
+        "commands": [
+            "cd /srv/app/web/reports/e2e/playwright/tracing/",
+            "ls -la",
+            'echo "<details><summary>:boom: To see the trace, please open the link in the console ...</summary>\\n\\n<p>\\n\\n" >> /srv/app/web/comments.file',
+            'for f in *.zip; do echo "#### npx playwright show-trace $CACHE_ENDPOINT/$CACHE_BUCKET/${DRONE_BUILD_NUMBER}/tracing/$f \n" >> /srv/app/web/comments.file; done',
+            'echo "\n</p></details>" >> /srv/app/web/comments.file',
+            "more /srv/app/web/comments.file",
+        ],
+        "environment": {
+            "TEST_CONTEXT": suite,
+            "CACHE_ENDPOINT": {
+                "from_secret": "cache_public_s3_server",
+            },
+            "CACHE_BUCKET": {
+                "from_secret": "cache_public_s3_bucket",
+            },
+        },
+    }]
 
 def settingsUITests(ctx, storage = "ocis", accounts_hash_difficulty = 4):
     early_fail = config["settingsUITests"]["earlyFail"] if "earlyFail" in config["settingsUITests"] else False
