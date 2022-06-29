@@ -97,7 +97,7 @@ config = {
         "earlyFail": True,
     },
     "settingsUITests": {
-        "skip": False,
+        "skip": True,
         "earlyFail": True,
     },
     "parallelApiTests": {
@@ -111,11 +111,11 @@ config = {
                 "When": "ocis",
                 "Then": "oc10",
             },
-            {
-                "Given": "ocis",
-                "When": "oc10",
-                "Then": "ocis",
-            },
+            # {
+            #     "Given": "ocis",
+            #     "When": "oc10",
+            #     "Then": "ocis",
+            # },
         ],
     },
     "rocketchat": {
@@ -2200,7 +2200,7 @@ def parallelDeployAcceptancePipeline(ctx):
     pipelines = []
 
     default = {
-        "filterTags": "~@skipOnGraph&&~@skipOnOcis&&~@notToImplementOnOCIS&&~@toImplementOnOCIS&&~@skipOnLdap&&~comments-app-required&&~@federation-app-required&&~@notifications-app-required&&~systemtags-app-required&&~@local_storage&&~@skipOnOcis-OCIS-Storage&&~@files_external-app-required",
+        "filterTags": "~@skipOnParallelDeployment&&~@skipOnGraph&&~@skipOnOcis&&~@notToImplementOnOCIS&&~@toImplementOnOCIS&&~@skipOnLdap&&~comments-app-required&&~@federation-app-required&&~@notifications-app-required&&~systemtags-app-required&&~@local_storage&&~@skipOnOcis-OCIS-Storage&&~@files_external-app-required",
     }
 
     test_type = ""

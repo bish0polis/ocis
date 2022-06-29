@@ -2,6 +2,21 @@
 
 The expected failures in this file are from features in the owncloud/core repo.
 
+### [System config cannot be set/unset in oCIS]()
+
+- [apiCapabilities/capabilities.feature:8](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiCapabilities/capabilities.feature#L8) Scenario: Check that the sharing API can be enabled
+<!--  -->
+- [apiCapabilities/capabilities.feature:41](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiCapabilities/capabilities.feature#L41)
+- [apiCapabilities/capabilities.feature:85](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiCapabilities/capabilities.feature#L85)
+- [apiCapabilities/capabilities.feature:100](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiCapabilities/capabilities.feature#L100)
+- [apiCapabilities/capabilities.feature:116](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiCapabilities/capabilities.feature#L116)
+- [apiCapabilities/capabilities.feature:127](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiCapabilities/capabilities.feature#L127)
+- [apiCapabilities/capabilities.feature:139](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiCapabilities/capabilities.feature#L139)
+- [apiCapabilities/capabilities.feature:282](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiCapabilities/capabilities.feature#L282)
+<!-- Then step must be in oCIS to pass -->
+- [apiCapabilities/capabilities.feature:959](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiCapabilities/capabilities.feature#L959)
+- [apiMain/status.feature:5](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/status.feature#L5)
+
 #### [Ability to return error messages in Webdav response bodies](https://github.com/owncloud/ocis/issues/1293)
 
 - [apiAuthOcs/ocsPOSTAuth.feature:10](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiAuthOcs/ocsPOSTAuth.feature#L10) Scenario: send POST requests to OCS endpoints as normal user with wrong password
@@ -18,8 +33,6 @@ The expected failures in this file are from features in the owncloud/core repo.
 - [apiShareManagementBasicToShares/createShareToSharesFolder.feature:236](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementBasicToShares/createShareToSharesFolder.feature#L236)
 - [apiShareManagementBasicToShares/createShareToSharesFolder.feature:639](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementBasicToShares/createShareToSharesFolder.feature#L639)
 - [apiShareManagementBasicToShares/createShareToSharesFolder.feature:640](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementBasicToShares/createShareToSharesFolder.feature#L640)
-- [apiShareManagementBasicToShares/deleteShareFromShares.feature:43](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementBasicToShares/deleteShareFromShares.feature#L43)
-- [apiShareManagementBasicToShares/deleteShareFromShares.feature:44](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementBasicToShares/deleteShareFromShares.feature#L44)
 - [apiShareManagementBasicToShares/deleteShareFromShares.feature:67](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementBasicToShares/deleteShareFromShares.feature#L67)
 - [apiShareManagementBasicToShares/deleteShareFromShares.feature:120](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementBasicToShares/deleteShareFromShares.feature#L120)
 - [apiShareManagementToShares/acceptShares.feature:65](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementToShares/acceptShares.feature#L65)
@@ -27,18 +40,12 @@ The expected failures in this file are from features in the owncloud/core repo.
 - [apiShareManagementToShares/acceptShares.feature:224](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementToShares/acceptShares.feature#L224)
 - [apiShareManagementToShares/acceptShares.feature:252](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementToShares/acceptShares.feature#L252)
 - [apiShareManagementToShares/mergeShare.feature:16](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementToShares/mergeShare.feature#L16)
-- [apiShareOperationsToShares1/accessToShare.feature:24](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/accessToShare.feature#L24)
-- [apiShareOperationsToShares1/accessToShare.feature:25](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/accessToShare.feature#L25)
 - [apiShareOperationsToShares1/accessToShare.feature:41](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/accessToShare.feature#L41)
 - [apiShareOperationsToShares1/accessToShare.feature:42](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/accessToShare.feature#L42)
-- [apiShareOperationsToShares1/accessToShare.feature:58](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/accessToShare.feature#L58)
-- [apiShareOperationsToShares1/accessToShare.feature:59](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/accessToShare.feature#L59)
 - [apiShareOperationsToShares1/accessToShare.feature:74](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/accessToShare.feature#L74)
 - [apiShareOperationsToShares1/accessToShare.feature:75](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/accessToShare.feature#L75)
 - [apiShareOperationsToShares1/changingFilesShare.feature:25](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/changingFilesShare.feature#L25)
 - [apiShareOperationsToShares1/changingFilesShare.feature:26](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/changingFilesShare.feature#L26)
-- [apiShareOperationsToShares1/gettingShares.feature:62](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/gettingShares.feature#L62)
-- [apiShareOperationsToShares1/gettingShares.feature:63](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/gettingShares.feature#L63)
 - [apiShareOperationsToShares1/gettingShares.feature:85](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/gettingShares.feature#L85)
 - [apiShareOperationsToShares1/gettingShares.feature:86](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/gettingShares.feature#L86)
 - [apiShareOperationsToShares1/gettingShares.feature:106](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/gettingShares.feature#L106)
