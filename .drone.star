@@ -101,12 +101,12 @@ config = {
         "earlyFail": True,
     },
     "parallelApiTests": {
-        "apiTests-matrix1": {
-            "numberOfParts": 10,
-            "skip": False,
-            "skipExceptParts": [],
-            "earlyFail": True,
-            "oc_selector": {
+        "numberOfParts": 1,
+        "skip": False,
+        "skipExceptParts": [],
+        "earlyFail": True,
+        "matrices": [
+            {
                 "Given": "oc10",
                 "When": "ocis",
                 "Then": "oc10",
@@ -2292,7 +2292,6 @@ def parallelAcceptanceTests(env, matrix):
         "REVA_LDAP_BASE_DN": "dc=owncloud,dc=com",
         "REVA_LDAP_HOSTNAME": "openldap",
         "REVA_LDAP_BIND_DN": "cn=admin,dc=owncloud,dc=com",
-        "SKELETON_DIR": "/var/www/owncloud/apps/testing/data/apiSkeleton",
         "PATH_TO_CORE": "/srv/app/testrunner",
         "OCIS_REVA_DATA_ROOT": "/mnt/data/",
         "EXPECTED_FAILURES_FILE": "/drone/src/tests/parallelDeployAcceptance/expected-failures-API-%s-%s-%s.md" % (matrix["Given"], matrix["When"], matrix["Then"]),
