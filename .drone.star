@@ -101,7 +101,7 @@ config = {
         "earlyFail": True,
     },
     "parallelApiTests": {
-        "numberOfParts": 1,
+        "numberOfParts": 5,
         "skip": False,
         "skipExceptParts": [],
         "earlyFail": True,
