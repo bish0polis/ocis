@@ -22,6 +22,13 @@ The expected failures in this file are from features in the owncloud/core repo.
 - [apiAuthOcs/ocsPOSTAuth.feature:10](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiAuthOcs/ocsPOSTAuth.feature#L10) Scenario: send POST requests to OCS endpoints as normal user with wrong password
 - [apiAuthOcs/ocsPUTAuth.feature:10](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiAuthOcs/ocsPUTAuth.feature#L10) Scenario: send PUT request to OCS endpoints as admin with wrong password
 
+### [Extra checksum with oCIS selector]()
+
+- [apiMain/checksums.feature:29](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L29)
+- [apiMain/checksums.feature:30](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L30)
+- [apiMain/checksums.feature:46](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L46)
+- [apiMain/checksums.feature:47](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L47)
+
 ### [Differences in path property while listing pending shares](https://github.com/owncloud/ocis/issues/4035)
 
 - [apiShareCreateSpecialToShares1/createShareUniqueReceivedNames.feature:15](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareCreateSpecialToShares1/createShareUniqueReceivedNames.feature#L15)
