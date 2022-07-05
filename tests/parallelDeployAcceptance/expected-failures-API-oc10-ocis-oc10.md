@@ -22,7 +22,7 @@ The expected failures in this file are from features in the owncloud/core repo.
 - [apiAuthOcs/ocsPOSTAuth.feature:10](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiAuthOcs/ocsPOSTAuth.feature#L10) Scenario: send POST requests to OCS endpoints as normal user with wrong password
 - [apiAuthOcs/ocsPUTAuth.feature:10](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiAuthOcs/ocsPUTAuth.feature#L10) Scenario: send PUT request to OCS endpoints as admin with wrong password
 
-### [Extra checksum with oCIS selector]()
+### [PROPFIND for checksums returns multiple duplicate checksums (using oCIS selector)](https://github.com/owncloud/ocis/issues/4092)
 
 - [apiMain/checksums.feature:29](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L29)
 - [apiMain/checksums.feature:30](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L30)
@@ -61,3 +61,16 @@ The expected failures in this file are from features in the owncloud/core repo.
 - [apiShareOperationsToShares1/gettingShares.feature:139](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/gettingShares.feature#L139)
 - [apiShareOperationsToShares1/gettingShares.feature:170](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/gettingShares.feature#L170)
 - [apiShareOperationsToShares1/gettingShares.feature:171](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareOperationsToShares1/gettingShares.feature#L171)
+- [apiSharePublicLink1/createPublicLinkShare.feature:41](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink1/createPublicLinkShare.feature#L41)
+- [apiSharePublicLink1/createPublicLinkShare.feature:42](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink1/createPublicLinkShare.feature#L42)
+- [apiSharePublicLink1/createPublicLinkShare.feature:105](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink1/createPublicLinkShare.feature#L105)
+- [apiSharePublicLink1/createPublicLinkShare.feature:106](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink1/createPublicLinkShare.feature#L106)
+- [apiSharePublicLink1/createPublicLinkShare.feature:241](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink1/createPublicLinkShare.feature#L241)
+- [apiSharePublicLink1/createPublicLinkShare.feature:242](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink1/createPublicLinkShare.feature#L242)
+
+### [Cannot GET share information with share id (using ocis selector)](https://github.com/owncloud/ocis/issues/4101)
+
+- [apiSharePublicLink2/multilinkSharing.feature:43](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink2/multilinkSharing.feature#L43)
+- [apiSharePublicLink2/multilinkSharing.feature:44](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink2/multilinkSharing.feature#L44)
+- [apiSharePublicLink3/updatePublicLinkShare.feature:78](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink3/updatePublicLinkShare.feature#L78)
+- [apiSharePublicLink3/updatePublicLinkShare.feature:79](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink3/updatePublicLinkShare.feature#L79)

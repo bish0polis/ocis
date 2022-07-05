@@ -2,14 +2,14 @@ dn: ou=TestGroups,dc=owncloud,dc=com
 objectClass: organizationalUnit
 ou: TestGroups
 
-dn: cn=admin,ou=TestGroups,dc=owncloud,dc=com
+dn: cn=users,ou=TestGroups,dc=owncloud,dc=com
 objectClass: groupOfUniqueNames
 objectClass: posixGroup
 objectClass: ownCloud
 objectClass: top
-cn: admin
-description: Admin
-gidNumber: 30000
+cn: users
+description: Normal user
+gidNumber: 5000
 ownCloudUUID:: NTA5YTlkY2QtYmIzNy00ZjRmLWEwMWEtMTlkY2EyN2Q5Y2Zh
 uniqueMember: uid=admin,ou=TestUsers,dc=owncloud,dc=com
 uniqueMember: uid=einstein,ou=TestUsers,dc=owncloud,dc=com

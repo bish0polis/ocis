@@ -16,8 +16,8 @@ cn: admin
 displayName: Admin
 description: An admin user.
 mail: admin@example.org
-uidNumber: 20000
-gidNumber: 30000
+uidNumber: 30000
+gidNumber: 5000
 homeDirectory: /home/openldap/admin
 ownCloudUUID:: ZGRjMjAwNGMtMDk3Ny0xMWViLTlkM2YtYTc5Mzg4OGNkMGY4
 userPassword:: e1NTSEF9UWhmaFB3dERydTUydURoWFFObDRMbzVIckI3TkI5Nmo=
@@ -37,8 +37,8 @@ cn: einstein
 displayName: Albert Einstein
 description: A German-born theoretical physicist who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics).
 mail: einstein@example.org
-uidNumber: 20001
-gidNumber: 30000
+uidNumber: 30001
+gidNumber: 5000
 homeDirectory: /home/openldap/einstein
 ownCloudUUID:: NGM1MTBhZGEtYzg2Yi00ODE1LTg4MjAtNDJjZGY4MmMzZDUx
 userPassword:: e1NTSEF9TXJEcXpFNGdKbXZxbVRVTGhvWEZ1VzJBbkV3NWFLK3J3WTIvbHc9PQ==
