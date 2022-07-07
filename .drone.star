@@ -109,8 +109,14 @@ config = {
             "oc_selector": {
                 "Given": "oc10",
                 "When": "ocis",
+                "Then": "oc10",
+            },
+            {
+                "Given": "ocis",
+                "When": "oc10",
                 "Then": "ocis",
             },
+<<<<<<< HEAD
         },
         # "apiTests-matrix2": {
         #     "numberOfParts": 10,
@@ -123,6 +129,9 @@ config = {
         #         "Then": "oc10",
         #     },
         # },
+=======
+        ],
+>>>>>>> 72d64410a... run all tests on nightly and only smoke tests on PRs
     },
     "rocketchat": {
         "channel": "ocis-internal",
@@ -2211,12 +2220,16 @@ def parallelDeployAcceptancePipeline(ctx):
     pipelines = []
 
     default = {
-        "filterTags": "~@skipOnGraph&&~@skipOnOcis&&~@notToImplementOnOCIS&&~@toImplementOnOCIS&&~comments-app-required&&~@federation-app-required&&~@notifications-app-required&&~systemtags-app-required&&~@local_storage&&~@skipOnOcis-OCIS-Storage&&~@issue-ocis-3023",
+        "filterTags": "~@skipOnGraph&&~@skipOnOcis&&~@notToImplementOnOCIS&&~@toImplementOnOCIS&&~@skipOnLdap&&~comments-app-required&&~@federation-app-required&&~@notifications-app-required&&~systemtags-app-required&&~@local_storage&&~@skipOnOcis-OCIS-Storage&&~@files_external-app-required",
     }
 
-    for matrix, options in config["parallelApiTests"].items():
-        default.update(options)
-        params = default
+    test_type = ""
+    if ctx.build.event != "cron":
+        default["filterTags"] += "&&@smokeTest"
+        test_type = "-smoke"
+
+    default.update(config["parallelApiTests"])
+    params = default
 
         if "skip" in params and params["skip"]:
             return pipelines
@@ -2239,7 +2252,7 @@ def parallelDeployAcceptancePipeline(ctx):
                 pipeline = {
                     "kind": "pipeline",
                     "type": "docker",
-                    "name": "%s-%s" % (matrix, runPart),
+                    "name": "parallel%s-%s-%s-%s-%s" % (test_type, matrix["Given"], matrix["When"], matrix["Then"], runPart),
                     "platform": {
                         "os": "linux",
                         "arch": "amd64",
