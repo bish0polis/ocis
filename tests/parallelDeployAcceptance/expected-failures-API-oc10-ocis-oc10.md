@@ -29,7 +29,21 @@ The expected failures in this file are from features in the owncloud/core repo.
 - [apiMain/checksums.feature:46](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L46)
 - [apiMain/checksums.feature:47](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L47)
 
-### [Differences in path property while listing pending shares](https://github.com/owncloud/ocis/issues/4035)
+### [carddav doesn't work in oCIS]()
+
+- [apiMain/carddav.feature:8](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/carddav.feature#L8)
+- [apiMain/carddav.feature:15](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/carddav.feature#L15)
+- [apiMain/carddav.feature:23](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/carddav.feature#L23)
+- [apiMain/carddav.feature:31](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/carddav.feature#L31)
+
+### [caldav doesn't work in oCIS]()
+
+- [apiMain/caldav.feature:8](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/caldav.feature#L8)
+- [apiMain/caldav.feature:15](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/caldav.feature#L15)
+- [apiMain/caldav.feature:23](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/caldav.feature#L23)
+- [apiMain/caldav.feature:31](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/caldav.feature#L31)
+
+### [Shares are auto-accepted with ocis selector]()
 
 - [apiShareCreateSpecialToShares1/createShareUniqueReceivedNames.feature:15](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareCreateSpecialToShares1/createShareUniqueReceivedNames.feature#L15)
 - [apiShareManagementBasicToShares/createShareToSharesFolder.feature:37](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiShareManagementBasicToShares/createShareToSharesFolder.feature#L37)
@@ -75,9 +89,8 @@ The expected failures in this file are from features in the owncloud/core repo.
 - [apiSharePublicLink3/updatePublicLinkShare.feature:78](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink3/updatePublicLinkShare.feature#L78)
 - [apiSharePublicLink3/updatePublicLinkShare.feature:79](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiSharePublicLink3/updatePublicLinkShare.feature#L79)
 
-### [Shares are auto-accepted with ocis selector]()
-
 #### [Webdav LOCK operations](https://github.com/owncloud/ocis/issues/1284)
+
 - [apiWebdavLocks/folder.feature:18](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiWebdavLocks/folder.feature#L18)
 - [apiWebdavLocks/folder.feature:19](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiWebdavLocks/folder.feature#L19)
 - [apiWebdavLocks/folder.feature:20](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiWebdavLocks/folder.feature#L20)
