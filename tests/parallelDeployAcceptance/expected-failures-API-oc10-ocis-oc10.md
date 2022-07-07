@@ -29,18 +29,20 @@ The expected failures in this file are from features in the owncloud/core repo.
 - [apiMain/checksums.feature:46](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L46)
 - [apiMain/checksums.feature:47](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/checksums.feature#L47)
 
-### [carddav doesn't work in oCIS]()
+### [carddav and caldav endpoints do not work](https://github.com/owncloud/ocis/issues/4130)
 
+<!--
 - [apiMain/carddav.feature:8](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/carddav.feature#L8)
 - [apiMain/carddav.feature:15](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/carddav.feature#L15)
 - [apiMain/carddav.feature:23](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/carddav.feature#L23)
+-->
+
 - [apiMain/carddav.feature:31](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/carddav.feature#L31)
-
-### [caldav doesn't work in oCIS]()
-
+<!--
 - [apiMain/caldav.feature:8](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/caldav.feature#L8)
 - [apiMain/caldav.feature:15](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/caldav.feature#L15)
 - [apiMain/caldav.feature:23](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/caldav.feature#L23)
+  -->
 - [apiMain/caldav.feature:31](https://github.com/owncloud/core/blob/master/tests/acceptance/features/apiMain/caldav.feature#L31)
 
 ### [Shares are auto-accepted with ocis selector]()
