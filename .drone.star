@@ -6,7 +6,6 @@ ALPINE_GIT = "alpine/git:latest"
 CHKO_DOCKER_PUSHRM = "chko/docker-pushrm:1"
 DRONE_CLI = "drone/cli:alpine"
 MARIADB = "mariadb:10.6"
-MELTWATER_DRONE_CACHE = "meltwater/drone-cache:v1"
 MINIO_MC = "minio/mc:RELEASE.2021-10-07T04-19-58Z"
 OC_CI_ALPINE = "owncloudci/alpine:latest"
 OC_CI_BAZEL_BUILDIFIER = "owncloudci/bazel-buildifier:latest"
@@ -31,6 +30,7 @@ PLUGINS_GITHUB_RELEASE = "plugins/github-release:1"
 PLUGINS_GIT_ACTION = "plugins/git-action:1"
 PLUGINS_MANIFEST = "plugins/manifest:1"
 PLUGINS_S3 = "plugins/s3:latest"
+PLUGINS_S3_CACHE = "plugins/s3-cache:1"
 PLUGINS_SLACK = "plugins/slack:1"
 REDIS = "redis:6-alpine"
 SELENIUM_STANDALONE_CHROME_DEBUG = "selenium/standalone-chrome-debug:3.141.59"
@@ -1993,26 +1993,21 @@ def genericCache(name, action, mounts, cache_key):
 
     step = {
         "name": "%s_%s" % (action, name),
-        "image": MELTWATER_DRONE_CACHE,
-        "environment": {
-            "AWS_ACCESS_KEY_ID": {
-                "from_secret": "cache_s3_access_key",
-            },
-            "AWS_SECRET_ACCESS_KEY": {
-                "from_secret": "cache_s3_secret_key",
-            },
-        },
+        "image": PLUGINS_S3_CACHE,
         "settings": {
             "endpoint": {
                 "from_secret": "cache_s3_endpoint",
             },
-            "bucket": "cache",
-            "region": "us-east-1",  # not used at all, but fails if not given!
-            "path_style": "true",
-            "cache_key": cache_key,
             "rebuild": rebuild,
             "restore": restore,
             "mount": mounts,
+            "access_key": {
+                "from_secret": "cache_s3_access_key",
+            },
+            "secret_key": {
+                "from_secret": "cache_s3_secret_key",
+            },
+            "filename": "%s.tar" % (cache_key),
         },
     }
     return step
@@ -2029,16 +2024,21 @@ def genericCachePurge(ctx, name, cache_key):
         "steps": [
             {
                 "name": "purge-cache",
-                "image": MINIO_MC,
-                "failure": "ignore",
-                "environment": {
-                    "MC_HOST_cache": {
-                        "from_secret": "cache_s3_connection_url",
+                "image": PLUGINS_S3_CACHE,
+                "settings": {
+                    "access_key": {
+                        "from_secret": "cache_s3_access_key",
                     },
+                    "secret_key": {
+                        "from_secret": "cache_s3_secret_key",
+                    },
+                    "endpoint": {
+                        "from_secret": "cache_s3_endpoint",
+                    },
+                    "flush": True,
+                    "flush_age": "14",
+                    "filename": "%s.tar" % (cache_key),
                 },
-                "commands": [
-                    "mc rm --recursive --force cache/cache/%s/%s" % (ctx.repo.name, cache_key),
-                ],
             },
         ],
         "trigger": {
