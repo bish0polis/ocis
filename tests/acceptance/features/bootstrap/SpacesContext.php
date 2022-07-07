@@ -1709,6 +1709,58 @@ class SpacesContext implements Context {
 	}
 
 	/**
+	 * @When /^user "([^"]*)" copies (?:file|folder) "([^"]*)" to "([^"]*)" in space "([^"]*)" using the WebDAV API$/
+	 * @When /^user "Alice" copies (?:file|folder) "([^"]*)" from space "([^"]*)" to "([^"]*)" in space "([^"]*)" using the WebDAV API$/
+	 *
+	 * @param string $user
+	 * @param string $fileSource
+	 * @param string $fileDestination
+	 * @param string $spaceName
+	 *
+	 * @return void
+	 */
+	public function userCopiesFileUsingTheAPI(
+		string $user,
+		string $fileSource,
+		string $fileDestination,
+		string $spaceName
+	):void {
+		$space = $this->getSpaceByName($user, $spaceName);
+		$headers['Destination'] = $this->destinationHeaderValue(
+			$user,
+			$fileDestination,
+			$spaceName
+		);
+
+		$fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'] . '/' . $fileSource;
+		$this->featureContext->setResponse(
+			HttpRequestHelper::sendRequest(
+				$fullUrl,
+				"",
+				'COPY',
+				$user,
+				$this->featureContext->getPasswordForUser($user),
+				$headers,
+				""
+			)
+		);
+	}
+
+	/**
+	 * @param string $user
+	 * @param string $fileDestination
+	 * @param string $spaceName
+	 *
+	 * @return string
+	 * @throws GuzzleException
+	 */
+	public function destinationHeaderValue(string $user, string $fileDestination, string $spaceName):string {
+		$space = $this->getSpaceByName($user, $spaceName);
+		$fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'];
+		return \rtrim($fullUrl, '/') . '/' . \ltrim($fileDestination, '/');
+	}
+
+	/**
 	 * @Given /^user "([^"]*)" has uploaded a file inside space "([^"]*)" with content "([^"]*)" to "([^"]*)"$/
 	 *
 	 * @param string $user
@@ -2366,7 +2418,7 @@ class SpacesContext implements Context {
 			);
 		}
 		$url = $this->baseUrl . $fileVersion[$index][0];
-		
+
 		$this->featureContext->setResponse(
 			HttpRequestHelper::sendRequest(
 				$url,
