@@ -1725,47 +1725,72 @@ class SpacesContext implements Context {
 		string $spaceName
 	):void {
 		$space = $this->getSpaceByName($user, $spaceName);
-		$headers['Destination'] = $this->destinationHeaderValue(
+		$headers['Destination'] = $this->destinationHeaderValueWithSpaceName(
 			$user,
 			$fileDestination,
 			$spaceName
 		);
 
 		$fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'] . '/' . $fileSource;
-        $this->copyFilesAndFoldersRequest($user, $fullUrl, $headers);
-
-    }
-
-    /**
-     * @When /^user "([^"]*)" copies (?:file|folder) "([^"]*)" from space "([^"]*)" to "([^"]*)" in space "([^"]*)" using the WebDAV API$/
-     *
-     * @param string $user
-     * @param string $fileSource
-     * @param string $fromSpaceName
-     * @param string $fileDestination
-     * @param string $toSpaceName
-     *
-     * @return void
-     */
-    public function userCopiesFileFromAndToSpaceBetweenProjects(
-        string $user,
-        string $fileSource,
-        string $fromSpaceName,
-        string $fileDestination,
-        string $toSpaceName
-    ):void {
-        $space = $this->getSpaceByName($user, $fromSpaceName);
-        $headers['Destination'] = $this->destinationHeaderValue(
-            $user,
-            $fileDestination,
-            $toSpaceName
-        );
-        $fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'] . '/' . $fileSource;
-        $this->copyFilesAndFoldersRequest($user, $fullUrl, $headers);
-
-    }
+		$this->copyFilesAndFoldersRequest($user, $fullUrl, $headers);
+	}
 
 	/**
+	 * @When /^user "([^"]*)" copies (?:file|folder) "([^"]*)" from space "([^"]*)" to "([^"]*)" in space "([^"]*)" using the WebDAV API$/
+	 *
+	 * @param string $user
+	 * @param string $fileSource
+	 * @param string $fromSpaceName
+	 * @param string $fileDestination
+	 * @param string $toSpaceName
+	 *
+	 * @return void
+	 */
+	public function userCopiesFileFromAndToSpaceBetweenProjects(
+		string $user,
+		string $fileSource,
+		string $fromSpaceName,
+		string $fileDestination,
+		string $toSpaceName
+	):void {
+		$space = $this->getSpaceByName($user, $fromSpaceName);
+		$headers['Destination'] = $this->destinationHeaderValueWithSpaceName(
+			$user,
+			$fileDestination,
+			$toSpaceName
+		);
+		$fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'] . '/' . $fileSource;
+		$this->copyFilesAndFoldersRequest($user, $fullUrl, $headers);
+	}
+
+	/**
+	 * @When /^user "([^"]*)" copies (?:file|folder) "([^"]*)" from space "([^"]*)" to "([^"]*)" inside personal using the WebDAV API$/
+	 *
+	 * @param string $user
+	 * @param string $fileSource
+	 * @param string $spaceName
+	 * @param string $fileDestination
+	 *
+	 * @return void
+	 */
+	public function userCopiesFileFromProjectToPersonal(
+		string $user,
+		string $fileSource,
+		string $spaceName,
+		string $fileDestination
+	):void {
+		$space = $this->getSpaceByName($user, $spaceName);
+		$headers['Destination'] = $this->destinationHeaderValueWithUserPersonalSpaceID(
+			$user,
+			$fileDestination,
+		);
+		$fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'] . '/' . $fileSource;
+		$this->copyFilesAndFoldersRequest($user, $fullUrl, $headers);
+	}
+
+	/**
+	 * returns a url for destination with spacename
+	 *
 	 * @param string $user
 	 * @param string $fileDestination
 	 * @param string $spaceName
@@ -1773,35 +1798,50 @@ class SpacesContext implements Context {
 	 * @return string
 	 * @throws GuzzleException
 	 */
-	public function destinationHeaderValue(string $user, string $fileDestination, string $spaceName):string {
+	public function destinationHeaderValueWithSpaceName(string $user, string $fileDestination, string $spaceName):string {
 		$space = $this->getSpaceByName($user, $spaceName);
 		$fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'];
 		return \rtrim($fullUrl, '/') . '/' . \ltrim($fileDestination, '/');
 	}
 
-    /**
-     * COPY request for files|folders
-     *
-     * @param string $user
-     * @param string $fullUrl
-     * @param string $headers
-     *
-     * @return void
-     * @throws GuzzleException
-     */
-    public function copyFilesAndFoldersRequest(string $user, string $fullUrl, array $headers):void {
-        $this->featureContext->setResponse(
-            HttpRequestHelper::sendRequest(
-                $fullUrl,
-                "",
-                'COPY',
-                $user,
-                $this->featureContext->getPasswordForUser($user),
-                $headers,
-                ""
-            )
-        );
-    }
+	/**
+	 * returns a url for destination with personal space id
+	 *
+	 * @param string $user
+	 * @param string $fileDestination
+	 *
+	 * @return string
+	 * @throws GuzzleException
+	 */
+	public function destinationHeaderValueWithUserPersonalSpaceID(string $user, string $fileDestination):string {
+		$userPersonalSpaceID = $this->featureContext->getPersonalSpaceIdForUser($user, true);
+		$fullUrl = $this->baseUrl . "/dav/spaces/" . $userPersonalSpaceID;
+		return \rtrim($fullUrl, '/') . '/' . \ltrim($fileDestination, '/');
+	}
+
+	/**
+	 * COPY request for files|folders
+	 *
+	 * @param string $user
+	 * @param string $fullUrl
+	 * @param string $headers
+	 *
+	 * @return void
+	 * @throws GuzzleException
+	 */
+	public function copyFilesAndFoldersRequest(string $user, string $fullUrl, array $headers):void {
+		$this->featureContext->setResponse(
+			HttpRequestHelper::sendRequest(
+				$fullUrl,
+				"",
+				'COPY',
+				$user,
+				$this->featureContext->getPasswordForUser($user),
+				$headers,
+				""
+			)
+		);
+	}
 
 	/**
 	 * @Given /^user "([^"]*)" has uploaded a file inside space "([^"]*)" with content "([^"]*)" to "([^"]*)"$/

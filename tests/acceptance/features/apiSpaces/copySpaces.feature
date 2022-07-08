@@ -10,7 +10,7 @@ Feature: copy file
       | Alice    |
       | Brian    |
 
-  Scenario Outline: Copying a file within a same project with role manager and editor
+  Scenario Outline: Copying a file within a same space project with role manager and editor
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "Project" with the default quota using the GraphApi
     And user "Alice" has created a folder "newfolder" in space "Project"
@@ -25,7 +25,7 @@ Feature: copy file
       | editor  |
 
 
-  Scenario: Copying a file within a same project with role viewer
+  Scenario: Copying a file within a same space project with role viewer
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "Project" with the default quota using the GraphApi
     And user "Alice" has created a folder "newfolder" in space "Project"
@@ -35,7 +35,7 @@ Feature: copy file
     And the HTTP status code should be "403"
 
 
-  Scenario Outline: User copy a file from a project with different role to a project with manager role
+  Scenario Outline: User copy a file from a space project with different role to a space project with manager role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project1" with the default quota using the GraphApi
     And user "Brian" has created a space "Project2" with the default quota using the GraphApi
@@ -52,7 +52,7 @@ Feature: copy file
       | viewer  |
 
 
-  Scenario Outline: User copy a file from a project with different role to a project with editor role
+  Scenario Outline: User copy a file from a space project with different role to a space project with editor role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project1" with the default quota using the GraphApi
     And user "Brian" has created a space "Project2" with the default quota using the GraphApi
@@ -68,7 +68,7 @@ Feature: copy file
       | editor  |
       | viewer  |
 
-  Scenario Outline: User copy a file from a project with different role to a project with editor role
+  Scenario Outline: User copy a file from a space project with different role to a space project with editor role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project1" with the default quota using the GraphApi
     And user "Brian" has created a space "Project2" with the default quota using the GraphApi
@@ -81,3 +81,19 @@ Feature: copy file
       | role    |
       | manager |
       | editor  |
+
+
+  Scenario Outline: User copy a file from space project to personal with different role
+    Given the administrator has given "Brian" the role "Space Admin" using the settings api
+    And user "Brian" has created a space "Project" with the default quota using the GraphApi
+    And user "Brian" has uploaded a file inside space "Project" with content "Project content" to "project.txt"
+    And user "Brian" has shared a space "Project" to user "Alice" with role "<role>"
+    When user "Alice" copies file "project.txt" from space "Project" to "project.txt" inside personal using the WebDAV API
+    And the HTTP status code should be "201"
+    And as "Alice" file "/project.txt" should exist
+    And the content of file "project.txt" for user "Alice" should be "Project content"
+    Examples:
+      | role    |
+      | manager |
+      | editor  |
+      | viewer  |
