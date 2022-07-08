@@ -2008,6 +2008,7 @@ def genericCache(name, action, mounts, cache_key):
                 "from_secret": "cache_s3_secret_key",
             },
             "filename": "%s.tar" % (cache_key),
+            "debug": "true",
         },
     }
     return step
