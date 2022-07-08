@@ -1710,7 +1710,6 @@ class SpacesContext implements Context {
 
 	/**
 	 * @When /^user "([^"]*)" copies (?:file|folder) "([^"]*)" to "([^"]*)" in space "([^"]*)" using the WebDAV API$/
-	 * @When /^user "Alice" copies (?:file|folder) "([^"]*)" from space "([^"]*)" to "([^"]*)" in space "([^"]*)" using the WebDAV API$/
 	 *
 	 * @param string $user
 	 * @param string $fileSource
@@ -1733,18 +1732,38 @@ class SpacesContext implements Context {
 		);
 
 		$fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'] . '/' . $fileSource;
-		$this->featureContext->setResponse(
-			HttpRequestHelper::sendRequest(
-				$fullUrl,
-				"",
-				'COPY',
-				$user,
-				$this->featureContext->getPasswordForUser($user),
-				$headers,
-				""
-			)
-		);
-	}
+        $this->copyFilesAndFoldersRequest($user, $fullUrl, $headers);
+
+    }
+
+    /**
+     * @When /^user "([^"]*)" copies (?:file|folder) "([^"]*)" from space "([^"]*)" to "([^"]*)" in space "([^"]*)" using the WebDAV API$/
+     *
+     * @param string $user
+     * @param string $fileSource
+     * @param string $fromSpaceName
+     * @param string $fileDestination
+     * @param string $toSpaceName
+     *
+     * @return void
+     */
+    public function userCopiesFileFromAndToSpaceBetweenProjects(
+        string $user,
+        string $fileSource,
+        string $fromSpaceName,
+        string $fileDestination,
+        string $toSpaceName
+    ):void {
+        $space = $this->getSpaceByName($user, $fromSpaceName);
+        $headers['Destination'] = $this->destinationHeaderValue(
+            $user,
+            $fileDestination,
+            $toSpaceName
+        );
+        $fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'] . '/' . $fileSource;
+        $this->copyFilesAndFoldersRequest($user, $fullUrl, $headers);
+
+    }
 
 	/**
 	 * @param string $user
@@ -1759,6 +1778,30 @@ class SpacesContext implements Context {
 		$fullUrl = $this->baseUrl . "/dav/spaces/" . $space['id'];
 		return \rtrim($fullUrl, '/') . '/' . \ltrim($fileDestination, '/');
 	}
+
+    /**
+     * COPY request for files|folders
+     *
+     * @param string $user
+     * @param string $fullUrl
+     * @param string $headers
+     *
+     * @return void
+     * @throws GuzzleException
+     */
+    public function copyFilesAndFoldersRequest(string $user, string $fullUrl, array $headers):void {
+        $this->featureContext->setResponse(
+            HttpRequestHelper::sendRequest(
+                $fullUrl,
+                "",
+                'COPY',
+                $user,
+                $this->featureContext->getPasswordForUser($user),
+                $headers,
+                ""
+            )
+        );
+    }
 
 	/**
 	 * @Given /^user "([^"]*)" has uploaded a file inside space "([^"]*)" with content "([^"]*)" to "([^"]*)"$/
